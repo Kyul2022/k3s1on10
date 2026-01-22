@@ -4,4 +4,4 @@ metadata:
   name: server-conf
   namespace: k3s1on10
 data:
-  server-port: 8081
+  server-port: "8081"
