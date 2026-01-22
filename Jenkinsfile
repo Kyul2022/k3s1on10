@@ -11,24 +11,19 @@ pipeline {
 apiVersion: v1
 kind: Pod
 metadata:
-  name: docker-building
+  name: building
   namespace: k3s1on10
 spec:
   containers:
-  - name: building-image
-    image: docker:latest
+  - name: kaniko
+    image: gcr.io/kaniko-project/executor:debug
     command:
     - cat
     tty: true	
     volumeMounts:
-    - name: docker-socket
-      mountPath: /var/run/docker.sock
     - name: docker-conf
-      mountPath: /tmp/.docker
+      mountPath: /kaniko/.docker
   volumes:
-    - name: docker-socket
-      hostPath:
-        path: /var/run/docker.sock
     - name: docker-conf
       secret:
         secretName: docker-hub-secret
@@ -40,13 +35,13 @@ spec:
 			}
 			steps {
 				checkout scm
-				container('building-image') {
+				container('kaniko') {
 					script {
 						sh '''
-						mkdir -p /root/.docker
-						cp /tmp/.docker/config.json /root/.docker/config.json
-						docker build -t kyul1234/k3s1on10:latest .
-						docker push kyul1234/k3s1on10:latest
+						/kaniko/executor \
+						--context \$(pwd) \
+						--dockerfile \$(pwd)/Dockerfile \
+						--destination kyul1234/k3s1on10:latest
 						'''
 					}
 				}
