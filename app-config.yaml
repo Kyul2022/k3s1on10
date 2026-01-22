@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: server-conf
+  namespace: k3s1on10
+data:
+  server-port: 8081

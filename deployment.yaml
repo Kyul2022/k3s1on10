@@ -16,6 +16,12 @@ spec:
       containers:
       - name: myapp
         image: kyul1234/k3s1on10:latest
+        env:
+        - name: SERVER_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: server-conf
+              key: server-port
         ports:
         - name: port
           containerPort: 8081

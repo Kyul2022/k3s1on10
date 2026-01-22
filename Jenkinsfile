@@ -74,6 +74,7 @@ spec:
 				checkout scm
 				container('deployer') {
 					sh '''
+					kubectl apply -f app-config.yaml
 					kubectl apply -f deployment.yaml
 					'''
 				}
