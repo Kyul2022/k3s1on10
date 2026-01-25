@@ -60,6 +60,7 @@ metadata:
   name: deployment
   namespace: k3s1on10
 spec:
+  serviceAccountName: just2test
   containers:
   - name: deployer
     image: alpine/k8s:1.32.11
