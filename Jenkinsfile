@@ -60,7 +60,6 @@ metadata:
   name: deployment
   namespace: k3s1on10
 spec:
-  serviceAccountName: k3s1on10
   containers:
   - name: deployer
     image: alpine/k8s:1.32.11
