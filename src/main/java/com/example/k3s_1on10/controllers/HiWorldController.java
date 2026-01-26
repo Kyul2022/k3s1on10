@@ -13,7 +13,7 @@ public class HiWorldController {
 	@GetMapping
 	public ResponseEntity<String> Hi(){
 		
-		String hi = "Hi!";
+		String hi = "Yo!";
 		return ResponseEntity.status(HttpStatus.OK).body(hi);
 	}
 }
