@@ -41,7 +41,7 @@ spec:
 						/kaniko/executor \
 						--context \$(pwd) \
 						--dockerfile \$(pwd)/Dockerfile \
-						--destination kyul1234/k3s1on10:latest
+						--destination kyul1234/k3s1on10:v2
 						'''
 					}
 				}
@@ -49,6 +49,7 @@ spec:
 				
 			}
 		}
+		/*
 		stage('Deploy to a pod') {
 			agent {
 				kubernetes {
@@ -80,7 +81,7 @@ spec:
 				}
 			}
 		}
-		
+		*/
 	}
 	
 }
